@@ -18,3 +18,5 @@ Clone the repo, open a terminal window in the root of the repo then run:
 - `venv/bin/Activate.ps1` for Windows PowerShell users
 
 2. `pip install -r requirements.txt` to install dependencies. You might get an error, saying you need additional build tools. If so, follow the instructions from [this thread's top answer](https://stackoverflow.com/questions/64261546/how-to-solve-error-microsoft-visual-c-14-0-or-greater-is-required-when-inst).
+
+3. Run python test.py
