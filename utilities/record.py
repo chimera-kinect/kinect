@@ -28,7 +28,7 @@ def main():
     k4a = PyK4A(
         Config(
             color_resolution=pyk4a.ColorResolution.OFF,
-            depth_mode=pyk4a.DepthMode.WFOV_UNBINNED,
+            depth_mode=pyk4a.DepthMode.NFOV_UNBINNED,
             synchronized_images_only=False,
             camera_fps=pyk4a.FPS.FPS_15
         )
