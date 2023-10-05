@@ -23,10 +23,10 @@ def colorize(
 def main():
     k4a = PyK4A(
         Config(
-            color_resolution=pyk4a.ColorResolution.OFF,
-            depth_mode=pyk4a.DepthMode.NFOV_UNBINNED,
+            color_resolution=pyk4a.ColorResolution.RES_720P,
+            depth_mode=pyk4a.DepthMode.WFOV_UNBINNED,
             synchronized_images_only=False,
-            camera_fps=pyk4a.FPS.FPS_30
+            camera_fps=pyk4a.FPS.FPS_15
         )
     )
     k4a.start()
@@ -39,8 +39,8 @@ def main():
 
     while True:
         capture = k4a.get_capture()
-        if np.any(capture.depth): # [[first row (200, 234, ...)], [second row], ...]
-            cv2.imshow("k4a", colorize(capture.depth, (300, 500), cv2.COLORMAP_HOT))
+        if np.any(capture.transformed_depth): # [[first row (200, 234, ...)], [second row], ...]
+            cv2.imshow("k4a", colorize(capture.transformed_depth, (900, 1100), cv2.COLORMAP_HOT))
             key = cv2.waitKey(10)
             if key != -1:
                 cv2.destroyAllWindows()
