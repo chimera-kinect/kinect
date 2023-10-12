@@ -61,11 +61,6 @@ async def main():
 
     async with serve(send_data, "localhost", 12345):
         await asyncio.Future()
-    # while True:
-    #     capture = k4a.get_capture()
-    #     if np.any(capture.transformed_depth):
-    #         depth_frame = normalize(clip_and_crop(capture.transformed_depth))
-    #         buf = get_bytes(depth_frame)
 
     k4a.stop()
 
