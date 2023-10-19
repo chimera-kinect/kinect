@@ -21,7 +21,7 @@ def normalize(
 def get_bytes(
     image: np.ndarray,
 ) -> bytes:
-    return image.tobytes(order='F')
+    return image.tobytes(order='C')
 
 x1, y1 = 70, 47
 x2, y2 = 1072, 705
