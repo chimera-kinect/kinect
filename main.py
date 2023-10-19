@@ -1,6 +1,4 @@
-import cv2
 import numpy as np
-import io
 import asyncio
 from websockets.server import serve
 import pyk4a
@@ -23,10 +21,7 @@ def normalize(
 def get_bytes(
     image: np.ndarray,
 ) -> bytes:
-    buffer = io.BytesIO()
-    np.save(buffer, image)
-    buffer.seek(0)
-    return buffer.read()
+    return image.tobytes(order='F')
 
 x1, y1 = 70, 47
 x2, y2 = 1072, 705
@@ -40,8 +35,9 @@ k4a = PyK4A(
             camera_fps=pyk4a.FPS.FPS_15
         )
     )
-
+counter = 0
 async def send_data(websocket):
+    global counter
     while True:
         # Send data to the client periodically
         capture = k4a.get_capture()
@@ -50,6 +46,8 @@ async def send_data(websocket):
             buf = get_bytes(depth_frame)
 
         await websocket.send(buf)
+        print(counter)
+        counter+=1
 
 async def main():
     global calibration_depth
